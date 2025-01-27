@@ -51,6 +51,25 @@ cp .env.example .env
 pnpm run dev
 ```
 
+## 🤝 Contribute
+
+We'd love to hear from you to improve **Llamout**! Follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a branch with your changes:
+   ```bash
+   git checkout -b feature/my-new-feature
+   ```
+3. Make your changes and commit:
+   ```bash
+   git commit -am 'Adds a new functionality'
+   ```
+4. Push your changes to your fork:
+   ```bash
+   git push origin feature/my-new-feature
+   ```
+5. Create a Pull Request detailing your improvements.
+
 ## 🩷 Donations
 
 If you'd like to support the development of **Llamout**, please consider donating to the developer.
