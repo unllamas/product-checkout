@@ -17,7 +17,7 @@ An open source payment system built with Next and focused on Bitcoin.
 ### Core Features
 
 - [x] Database on Instantdb
-- [x] Lightning Payments via LUD-16
+- [x] Lightning Payments via [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)
 - [x] Tiny [/dashboard](https://llamout.vercel.app/dashboard)
 
 ### Soon
