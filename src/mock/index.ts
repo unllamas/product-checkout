@@ -8,7 +8,7 @@ export const COMPANY = {
 export const CHECKOUT = {
   success_url: 'https://www.jonallamas.com/',
   cancel_url: '',
-  submit_type: '',
+  submit_type: 'donate',
   locale: 'en',
 };
 
