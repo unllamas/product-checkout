@@ -1,4 +1,4 @@
-# Product Checkout
+# llamout
 
 An open source payment system built with Next and focused on Bitcoin.
 
