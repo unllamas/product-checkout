@@ -2,7 +2,7 @@
 
 An open source payment system built with Next and focused on Bitcoin.
 
-[![llamout](./public/images/screenshot.png)]()
+[![llamout](./public/images/screenshot.png)](https://llamout.vercel.app/)
 
 
 ## 🤓 Tech Stack
@@ -18,7 +18,7 @@ An open source payment system built with Next and focused on Bitcoin.
 
 - [x] Database on Instantdb
 - [x] Lightning Payments via LUD-16
-- [x] Tiny `/dashboard`
+- [x] Tiny [/dashboard](https://llamout.vercel.app/dashboard)
 
 ### Soon
 - [ ] Email sending system with [React Email](https://react.email/) and [Resend](https://resend.com/)
