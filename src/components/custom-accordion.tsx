@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Check, Heart } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -14,7 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
-import Link from 'next/link';
+
 import { CHECKOUT } from '@/mock';
 
 type InformationProps = {
@@ -81,7 +82,7 @@ export function Information({ onComplete }: InformationProps) {
           </div>
         )}
         <Button className='w-full' disabled={variant === 'email' ? !name || !email : !pubkey} type='submit'>
-          Continue
+          Confirm
         </Button>
         <div className='flex items-center gap-2 px-4'>
           <div className='w-full h-[1px] bg-gray-300'></div>
