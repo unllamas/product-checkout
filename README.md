@@ -62,7 +62,7 @@ We'd love to hear from you to improve **Llamout**! Follow these steps to contrib
    ```
 3. Make your changes and commit:
    ```bash
-   git commit add 'Adds a new functionality'
+   git commit -m 'Adds a new functionality'
    ```
 4. Push your changes to your fork:
    ```bash
