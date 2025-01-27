@@ -89,7 +89,7 @@ export function Information({ onComplete }: InformationProps) {
           disabled={(variant === 'email' ? !name || !email : !pubkey) || loading}
           type='submit'
         >
-          {loading ? 'Generating invoice...' : 'Confirm'}
+          {loading ? 'Generating invoice...' : CHECKOUT.submit_type === 'donate' ? 'Donate' : 'Pay'}
         </Button>
         <div className='flex items-center gap-2 px-4'>
           <div className='w-full h-[1px] bg-gray-300'></div>
@@ -209,7 +209,7 @@ export function CustomAccordion(props: any) {
       listenPayment({
         verifyUrl: verify,
         intervalMs: 5000,
-        maxRetries: 12,
+        maxRetries: 48,
         onPaymentConfirmed: async (isPaid) => {
           if (isPaid) {
             modifyOrder(orderId);
