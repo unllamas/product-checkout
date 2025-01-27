@@ -23,6 +23,8 @@ type InformationProps = {
 };
 
 export function Information({ onComplete }: InformationProps) {
+  const [loading, setLoading] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -31,6 +33,7 @@ export function Information({ onComplete }: InformationProps) {
 
   async function onSubmit(e: any) {
     e.preventDefault();
+    setLoading(true);
 
     if (variant === 'email' && (!name || !email)) return;
     if (variant === 'pubkey' && !pubkey) return;
@@ -81,8 +84,12 @@ export function Information({ onComplete }: InformationProps) {
             />
           </div>
         )}
-        <Button className='w-full' disabled={variant === 'email' ? !name || !email : !pubkey} type='submit'>
-          Confirm
+        <Button
+          className='w-full'
+          disabled={(variant === 'email' ? !name || !email : !pubkey) || loading}
+          type='submit'
+        >
+          {loading ? 'Generating invoice...' : 'Confirm'}
         </Button>
         <div className='flex items-center gap-2 px-4'>
           <div className='w-full h-[1px] bg-gray-300'></div>
