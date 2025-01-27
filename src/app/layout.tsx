@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 import './globals.css';
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${inter.variable} antialiased`}>
         <div className='relative overflow-x-hidden flex flex-col w-screen min-h-screen bg-background'>{children}</div>
+        <Analytics />
       </body>
     </html>
   );
