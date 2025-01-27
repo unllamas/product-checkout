@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
 import './globals.css';
+import { CHECKOUT } from '@/mock';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang={CHECKOUT?.locale}>
       <body className={`${inter.variable} antialiased`}>
         <div className='relative overflow-x-hidden flex flex-col w-screen min-h-screen bg-background'>{children}</div>
         <Analytics />
