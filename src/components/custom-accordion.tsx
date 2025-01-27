@@ -16,7 +16,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 
-import { CHECKOUT } from '@/mock';
+import { CHECKOUT, COMPANY } from '@/mock';
 
 type InformationProps = {
   onComplete: (id: any) => void;
@@ -41,7 +41,7 @@ export function Information({ onComplete }: InformationProps) {
   }
 
   return (
-    <form className='flex flex-col gap-6' onSubmit={onSubmit}>
+    <form className='flex flex-col gap-6 px-4' onSubmit={onSubmit}>
       <div className='flex flex-col gap-4'>
         {variant === 'email' ? (
           <>
@@ -149,7 +149,7 @@ type PaymentProps = {
 
 export function Payment({ invoice }: PaymentProps) {
   return (
-    <div className='flex flex-col items-center gap-4'>
+    <div className='flex flex-col items-center gap-4 px-4'>
       <p className='text-center text-muted-foreground'>
         Remember to pay with a Bitcoin wallet using Lightning Network.
       </p>
@@ -265,7 +265,10 @@ export function CustomAccordion(props: any) {
               handleComplete('information');
 
               // General Payment
-              const data = await generatePayment({ lightningAddress: 'dios@lawallet.ar', amount: product?.price });
+              const data = await generatePayment({
+                lightningAddress: COMPANY?.lightningAddress,
+                amount: product?.price,
+              });
 
               setInvoice(data?.invoice?.pr);
               setVerify(data?.invoice?.verify);
