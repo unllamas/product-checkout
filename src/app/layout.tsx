@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Product Checkout',
+  title: 'Llamout - Payment System',
   description: 'By @unllamas',
 };
 
