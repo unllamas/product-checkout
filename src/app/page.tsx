@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Minus, Plus } from 'lucide-react';
 import { SatoshiV2Icon } from '@bitcoin-design/bitcoin-icons-react/filled';
 
 import { formatBigNumbers } from '@/lib/number';
@@ -61,7 +61,7 @@ export default function Page() {
                         if (!disabledCheckout) setQuantity(quantity - 1);
                       }}
                     >
-                      -
+                      <Minus />
                     </Button>
                     <p className='min-w-10 text-center text-md font-semibold'>
                       <span className='text-xs text-muted-foreground mr-1'>x</span>
@@ -75,7 +75,7 @@ export default function Page() {
                         if (!disabledCheckout) setQuantity(quantity + 1);
                       }}
                     >
-                      +
+                      <Plus />
                     </Button>
                   </div>
                 </div>
