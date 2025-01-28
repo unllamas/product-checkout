@@ -8,10 +8,11 @@ interface AddOrder {
   customer_id: any;
   amount: number;
   currency: string;
+  quantity: number;
 }
 
 export async function addOrder(props: AddOrder): Promise<string> {
-  const { customer_id, amount, currency } = props;
+  const { customer_id, amount, currency, quantity } = props;
 
   const newId = id();
 
@@ -20,6 +21,7 @@ export async function addOrder(props: AddOrder): Promise<string> {
       customer_id,
 
       amount: amount ?? null,
+      quantity: quantity ?? null,
       currency: currency ?? null,
       paid: false,
 
