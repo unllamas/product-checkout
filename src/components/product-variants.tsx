@@ -21,6 +21,7 @@ export function ProductVariants({
     <RadioGroup defaultValue={selected} onValueChange={(value) => onChange(value)}>
       {variants?.map((variant) => (
         <Label
+          key={variant?.id}
           className={cn('overflow-hidden flex w-full rounded-xl bg-background/5 border-background/10 border shadow-sm')}
           htmlFor={variant?.id}
         >
