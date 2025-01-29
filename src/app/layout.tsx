@@ -1,7 +1,13 @@
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Llamout - Payment System',
+  description: 'By @unllamas',
+};
 
 const inter = Inter({
   variable: '--font-inter',
