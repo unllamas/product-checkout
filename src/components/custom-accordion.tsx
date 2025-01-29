@@ -195,7 +195,7 @@ export function Summary({ onComplete }: SummaryProps) {
 type Step = 'information' | 'payment' | 'summary';
 
 export function CustomAccordion(props: any) {
-  const { product, quantity, onActiveStep } = props;
+  const { product, quantity, onActiveStep, selectedVariant } = props;
 
   const [activeStep, setActiveStep] = useState<Step>('information');
   const [completedSteps, setCompletedSteps] = useState<Step[]>([]);
@@ -203,6 +203,8 @@ export function CustomAccordion(props: any) {
   const [orderId, setOrderId] = useState<string>('');
   const [invoice, setInvoice] = useState<string>('');
   const [verify, setVerify] = useState<string>('');
+
+  const price = selectedVariant?.price || product?.price * quantity;
 
   useEffect(() => {
     if (orderId && verify) {
@@ -269,7 +271,7 @@ export function CustomAccordion(props: any) {
             onComplete={async (id) => {
               const _id = await addOrder({
                 customer_id: id,
-                amount: product?.price * quantity,
+                amount: price,
                 currency: product?.currency,
                 quantity,
               });
@@ -280,7 +282,7 @@ export function CustomAccordion(props: any) {
               // General Payment
               const data = await generatePayment({
                 lightningAddress: COMPANY?.lightningAddress,
-                amount: product?.price * quantity,
+                amount: price,
               });
 
               setInvoice(data?.invoice?.pr);
