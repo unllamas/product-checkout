@@ -28,14 +28,14 @@ export const PRODUCT = {
     {
       id: '1',
       name: 'Coffee ☕️',
-      description: 'Give me a coffee',
+      description: 'This gift will accompany me in the mornings.',
       price: 1001,
       currency: 'SAT',
     },
     {
       id: '2',
       name: 'Beer 🍺',
-      description: 'Give me a beer',
+      description: 'Shall we cut the week short? I could use a break.',
       price: 4800,
       currency: 'SAT',
     },
