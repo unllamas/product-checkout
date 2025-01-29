@@ -24,4 +24,20 @@ export const PRODUCT = {
   price: 1001,
   // only 'SAT'
   currency: 'SAT',
+  variants: [
+    {
+      id: '1',
+      name: 'Basic',
+      description: 'Esta es una descripcion',
+      price: 1001,
+      currency: 'SAT',
+    },
+    {
+      id: '2',
+      name: 'Advanced',
+      description: 'Esta es una descripcion',
+      price: 10021,
+      currency: 'SAT',
+    },
+  ],
 };
