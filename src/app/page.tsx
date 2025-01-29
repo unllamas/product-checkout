@@ -99,7 +99,7 @@ export default function Page() {
                   <p className='text-sm text-muted-foreground'>Total</p>
                   <h2 className='flex items-center text-lg tracking-tighter text-balance'>
                     <SatoshiV2Icon className='w-4 h-4' />
-                    <span className='font-semibold'>{formatBigNumbers(PRODUCT?.price * quantity)}</span>
+                    <span className='font-semibold'>{formatBigNumbers(Number(PRODUCT?.price) * quantity)}</span>
                     <span className='ml-1 text-muted-foreground'>{PRODUCT?.currency}</span>
                   </h2>
                 </div>
