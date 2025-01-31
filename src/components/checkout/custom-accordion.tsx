@@ -107,7 +107,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
       {variant === 'email' ? (
         <Button
           className='w-full'
-          variant='secondary'
+          variant='outline'
           onClick={() => {
             setName('');
             setEmail('');
@@ -119,7 +119,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
       ) : (
         <Button
           className='w-full'
-          variant='secondary'
+          variant='outline'
           onClick={() => {
             setPubkey('');
             setVariant('email');
@@ -140,7 +140,7 @@ function Copyable({ value, label }: { value: string; label: string }) {
     <CopyToClipboard text={value}>
       <Button
         className='w-full'
-        variant='secondary'
+        variant='outline'
         onClick={() => {
           setCopyLabel('Copied!');
           setDisabled(true);
