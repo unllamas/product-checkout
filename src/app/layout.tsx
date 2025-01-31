@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
-import { absoluteUrl } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 
 import './globals.css';
@@ -40,7 +39,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.png',
   },
-  manifest: absoluteUrl('/site.webmanifest'),
+  manifest: `${process.env.NEXT_PUBLIC_APP_URL}/site.webmanifest`,
 };
 
 const inter = Inter({
