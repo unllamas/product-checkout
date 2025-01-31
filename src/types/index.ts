@@ -1,4 +1,5 @@
 export type ProductType = {
+  id?: string;
   image: string;
   name: string;
   description: string;
@@ -6,8 +7,10 @@ export type ProductType = {
   currency: string;
 };
 
-export type CompanyType = {
+export type StoreType = {
+  id?: string;
   website: string;
   name: string;
   image: string;
+  lnaddress: string;
 };
