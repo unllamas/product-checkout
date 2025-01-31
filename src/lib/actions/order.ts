@@ -6,19 +6,24 @@ import { db } from '@/config/instantdb';
 
 interface AddOrder {
   customer_id: any;
+  product_id: string;
   amount: number;
   currency: string;
   quantity: number;
 }
 
 export async function addOrder(props: AddOrder): Promise<string> {
-  const { customer_id, amount, currency, quantity } = props;
+  const { customer_id, product_id, amount, currency, quantity } = props;
+
+  // TO-DO
+  // validate customer_id && product_id
 
   const newId = id();
 
   await db.transact(
     db.tx.order[newId].update({
       customer_id,
+      product_id,
 
       amount: amount ?? null,
       quantity: quantity ?? null,
