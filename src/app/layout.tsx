@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
-import { ThemeProvider } from '@/components/theme-provider';
-
 import { siteConfig } from '@/config/site';
 
 import './globals.css';
@@ -57,9 +55,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider attribute='class' defaultTheme='light' enableSystem={false} disableTransitionOnChange>
-          <div className='relative overflow-x-hidden flex flex-col w-screen min-h-screen bg-background'>{children}</div>
-        </ThemeProvider>
+        <div className='relative overflow-x-hidden flex flex-col w-screen min-h-screen bg-background'>{children}</div>
         <Analytics />
       </body>
     </html>
