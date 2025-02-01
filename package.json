@@ -13,6 +13,7 @@
     "@instantdb/admin": "^0.17.9",
     "@instantdb/core": "^0.17.9",
     "@instantdb/react": "^0.17.9",
+    "@noble/ciphers": "^1.2.1",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.5",
     "@radix-ui/react-avatar": "^1.1.2",
