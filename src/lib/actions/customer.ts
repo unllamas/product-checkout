@@ -4,8 +4,6 @@ import { id } from '@instantdb/core';
 
 import { db } from '@/config/instantdb';
 
-import { encrypt } from '../crypto';
-
 export async function addCustomer(props: {
   store_id: string;
   name: string;
@@ -17,15 +15,13 @@ export async function addCustomer(props: {
   // TO-DO
   // validate: store_id
 
-  const emailEncrypt = await encrypt(email);
-  const pubkeyEncrypt = await encrypt(pubkey);
-
   // Find if customer exist
   const query = {
     customer: {
       $: {
         where: {
-          or: [{ email: emailEncrypt }, { pubkey: pubkeyEncrypt }],
+          email: email ?? null,
+          pubkey: pubkey ?? null,
         },
       },
     },
@@ -46,8 +42,8 @@ export async function addCustomer(props: {
       store_id,
 
       name: name ?? null,
-      email: email ? emailEncrypt : null,
-      pubkey: pubkey ? pubkeyEncrypt : null,
+      email: email ?? null,
+      pubkey: pubkey ?? null,
       createdAt: Date.now(),
     }),
   );
