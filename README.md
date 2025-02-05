@@ -11,6 +11,7 @@ An open source payment system built with Next and focused on Bitcoin.
 - Database: [Instantdb](https://www.instantdb.com/)
 - Payments: [Lightning Network](https://lightning.network/)
 - UI Library: [Shadcn/ui](https://ui.shadcn.com/)
+- Email service: [Plunk](https://www.useplunk.com/)
 
 ## ✏️ Roadmap
 
@@ -21,7 +22,7 @@ An open source payment system built with Next and focused on Bitcoin.
 - [x] Tiny [/dashboard](https://llamout.vercel.app/dashboard)
 
 ### Soon
-- [ ] Email sending system with [React Email](https://react.email/) and [Resend](https://resend.com/)
+- [x] Email sending system with [Plunk](https://react.email/) and [Resend](https://resend.com/)
 - [ ] Validation with Zod
 - [ ] Customize Checkout
 - [ ] Onboarding Process
