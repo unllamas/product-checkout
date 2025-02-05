@@ -4,7 +4,7 @@ export const STORE = {
   image: 'images/logo.png',
   name: 'La Crypta |🇦🇷',
   website: 'https://x.com/lacryptaok',
-  lnaddress: 'fierillo@lawallet.ar',
+  lnaddress: process.env.NEXT_LN_ADDRESS,
 };
 
 export const CHECKOUT = {
