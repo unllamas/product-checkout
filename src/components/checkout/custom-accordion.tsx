@@ -274,7 +274,7 @@ export function CustomAccordion(props: CustomAccordion) {
         },
       });
     }
-  }, [orderId, verify, email, store?.name]); // Agregar dependencias necesarias
+  }, [orderId, verify, email, store?.name]);
 
   const handleComplete = async (step: Step) => {
     setCompletedSteps([...completedSteps, step]);
