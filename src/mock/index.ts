@@ -17,29 +17,14 @@ export const CHECKOUT = {
 };
 
 export const PRODUCT = {
-  id: 'product-1',
+  id: 'Cowork ticket',
   // image: 4/3 aspect ratio
   image:
     'images/banner2.jpeg',
-  name: 'MARTES DE COWORKING 🌯',
+  name: `MARTES DE COWORKING 🌯`,
   description: '¡Reserva tu silla junto a los bitcoiners mas picantes del país!',
   price: 500,
   // currency: only 'SAT'
   currency: 'SAT',
-  variants: [
-    {
-      id: '1',
-      name: 'Coffee ☕️',
-      description: 'This gift will accompany me in the mornings.',
-      price: 1001,
-      currency: 'SAT',
-    },
-    {
-      id: '2',
-      name: 'Beer 🍺',
-      description: 'Shall we cut the week short? I could use a break.',
-      price: 4800,
-      currency: 'SAT',
-    },
-  ],
+  variants: null,
 };
