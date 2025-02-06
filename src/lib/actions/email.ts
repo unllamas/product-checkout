@@ -50,11 +50,9 @@ export async function sendEmail(email: string, secretCode: string) {
         })
       });
   
-      if (!response.ok) throw new Error('Error al enviar el email');
       return await response.json();
-  
     } catch (error) {
-      console.error('Error en sendEmail:', error);
-      throw error;
+        console.error('Error generating invoice:', error);
+        throw error;
     }
 }
