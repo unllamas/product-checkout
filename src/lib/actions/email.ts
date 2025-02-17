@@ -1,6 +1,6 @@
-export async function sendEmail(email: string, secretCode: string) {
+export async function sendEmail(email: string, orderId: string) {
     // 1. Generate QR code using free API service
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(secretCode)}&size=200x200`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(orderId)}&size=200x200`;
   
     // 2. Email body 
     const emailBody = `
@@ -15,7 +15,7 @@ export async function sendEmail(email: string, secretCode: string) {
                     <p style="font-size: 16px; color: #555555; margin: 0 0 20px 0; text-align: center;">
                     Presenta este código único al ingresar:<br>
                     <strong style="font-size: 18px; letter-spacing: 2px; background: #f5f5f5; padding: 8px 15px; border-radius: 4px; display: inline-block; margin: 10px 0;">
-                        ${secretCode}
+                        ${orderId}
                     </strong>
                     </p>
                     

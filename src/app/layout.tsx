@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   creator: 'unllamas',
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'es_ES',
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,

@@ -250,7 +250,7 @@ export function CustomAccordion(props: CustomAccordion) {
           await modifyOrder(orderId);
           
           if (email) {
-            await sendEmail(email, Math.random().toString(36).substr(2, 8).toUpperCase());
+            await sendEmail(email, orderId);
             console.log('Correo enviado exitosamente a:', email);
           } else {
             console.warn('No hay email registrado para enviar confirmación');
