@@ -68,12 +68,18 @@ dependencies:
   '@vercel/analytics':
     specifier: ^1.4.1
     version: 1.4.1(next@15.1.5)(react@19.0.0)
+  '@zxing/library':
+    specifier: ^0.21.3
+    version: 0.21.3
   class-variance-authority:
     specifier: ^0.7.1
     version: 0.7.1
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  jsqr:
+    specifier: ^1.4.0
+    version: 1.4.0
   lucide-react:
     specifier: ^0.473.0
     version: 0.473.0(react@19.0.0)
@@ -92,6 +98,15 @@ dependencies:
   react-dom:
     specifier: ^19.0.0
     version: 19.0.0(react@19.0.0)
+  react-qr-reader:
+    specifier: 2.2.1
+    version: 2.2.1(react-dom@19.0.0)(react@19.0.0)
+  react-qr-scanner:
+    specifier: 1.0.0-alpha.11
+    version: 1.0.0-alpha.11(react-dom@19.0.0)(react@19.0.0)
+  react-zxing:
+    specifier: ^2.1.0
+    version: 2.1.0(react@19.0.0)
   recharts:
     specifier: ^2.15.0
     version: 2.15.0(react-dom@19.0.0)(react@19.0.0)
@@ -1723,6 +1738,39 @@ packages:
       react: 19.0.0
     dev: false
 
+  /@zxing/library@0.19.3:
+    resolution: {integrity: sha512-RUv5svewpDoD0ymXleOP8yVTO5BLkR0zn5coGC/Vs1671u0OBJ4xdtR8WVWf08OcvrieEMHdSfQY3ZKtqII/hg==}
+    engines: {node: '>= 10.4.0'}
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /@zxing/library@0.20.0:
+    resolution: {integrity: sha512-6Ev6rcqVjMakZFIDvbUf0dtpPGeZMTfyxYg4HkVWioWeN7cRcnUWT3bU6sdohc82O1nPXcjq6WiGfXX2Pnit6A==}
+    engines: {node: '>= 10.4.0'}
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /@zxing/library@0.21.3:
+    resolution: {integrity: sha512-hZHqFe2JyH/ZxviJZosZjV+2s6EDSY0O24R+FQmlWZBZXP9IqMo7S3nb3+2LBWxodJQkSurdQGnqE7KXqrYgow==}
+    engines: {node: '>= 10.4.0'}
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /@zxing/text-encoding@0.9.0:
+    resolution: {integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /acorn-jsx@5.3.2(acorn@8.14.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -3242,6 +3290,10 @@ packages:
       minimist: 1.2.8
     dev: true
 
+  /jsqr@1.4.0:
+    resolution: {integrity: sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==}
+    dev: false
+
   /jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
@@ -3714,6 +3766,31 @@ packages:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
     dev: false
 
+  /react-qr-reader@2.2.1(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-EL5JEj53u2yAOgtpAKAVBzD/SiKWn0Bl7AZy6ZrSf1lub7xHwtaXe6XSx36Wbhl1VMGmvmrwYMRwO1aSCT2fwA==}
+    peerDependencies:
+      react: ~16
+      react-dom: ~16
+    dependencies:
+      jsqr: 1.4.0
+      prop-types: 15.8.1
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      webrtc-adapter: 7.7.1
+    dev: false
+
+  /react-qr-scanner@1.0.0-alpha.11(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-TdaygL+4U9iapskJgK5Ilb1Cw4wwzQ3bVpIfzzbrEsxPaEJzmjQ7VuMz8E9hBQGCU4Ee+YtgglE3byEtgtRpkA==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@zxing/library': 0.19.3
+      prop-types: 15.8.1
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    dev: false
+
   /react-remove-scroll-bar@2.3.8(@types/react@19.0.8)(react@19.0.0):
     resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
     engines: {node: '>=10'}
@@ -3790,6 +3867,16 @@ packages:
       prop-types: 15.8.1
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
+    dev: false
+
+  /react-zxing@2.1.0(react@19.0.0):
+    resolution: {integrity: sha512-iFZ8KPfZl+biiT5/bluuMGaSLQAwnE0ialQHbJioHFuwqhCo1WmjQmAtI4WN8BmiKYFVkHGgwHSl+pgwpwtQEg==}
+    engines: {node: ^18 || ^20 || ^22, yarn: ^1.22}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0 || ^19.0.0
+    dependencies:
+      '@zxing/library': 0.20.0
+      react: 19.0.0
     dev: false
 
   /react@19.0.0:
@@ -3893,6 +3980,13 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
+  /rtcpeerconnection-shim@1.2.15:
+    resolution: {integrity: sha512-C6DxhXt7bssQ1nHb154lqeL0SXz5Dx4RczXZu2Aa/L1NJFnEVDxFwCBo3fqtuljhHIGceg5JKBV4XJ0gW5JKyw==}
+    engines: {node: '>=6.0.0', npm: '>=3.10.0'}
+    dependencies:
+      sdp: 2.12.0
+    dev: false
+
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -3928,6 +4022,10 @@ packages:
 
   /scheduler@0.25.0:
     resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
+    dev: false
+
+  /sdp@2.12.0:
+    resolution: {integrity: sha512-jhXqQAQVM+8Xj5EjJGVweuEzgtGWb3tmEEpl3CLP3cStInSbVHSg0QWOGQzNq8pSID4JkpeV2mPqlMDLrm0/Vw==}
     dev: false
 
   /semver@6.3.1:
@@ -4314,6 +4412,11 @@ packages:
       typescript: 5.7.3
     dev: true
 
+  /ts-custom-error@3.3.1:
+    resolution: {integrity: sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
@@ -4472,6 +4575,14 @@ packages:
       d3-shape: 3.2.0
       d3-time: 3.1.0
       d3-timer: 3.0.1
+    dev: false
+
+  /webrtc-adapter@7.7.1:
+    resolution: {integrity: sha512-TbrbBmiQBL9n0/5bvDdORc6ZfRY/Z7JnEj+EYOD1ghseZdpJ+nF2yx14k3LgQKc7JZnG7HAcL+zHnY25So9d7A==}
+    engines: {node: '>=6.0.0', npm: '>=3.10.0'}
+    dependencies:
+      rtcpeerconnection-shim: 1.2.15
+      sdp: 2.12.0
     dev: false
 
   /which-boxed-primitive@1.1.1:

@@ -9,6 +9,10 @@ export function Footer() {
           <Link className='border-b pb-1' rel='noopener noreferrer' target='_blank' href='https://x.com/unllamas'>
             @unllamas
           </Link>
+          {' | adaptado a La Crypta por — '}
+          <Link className='border-b pb-1' rel='noopener noreferrer' target='_blank' href='https://x.com/fierillo'>
+            @fierillo
+          </Link>
         </p>
       </div>
     </footer>

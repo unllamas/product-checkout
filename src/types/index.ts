@@ -1,4 +1,5 @@
 export type ProductType = {
+  variants: any;
   id?: string;
   image: string;
   name: string;

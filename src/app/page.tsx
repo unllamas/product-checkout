@@ -13,5 +13,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Page() {
-  return <CheckoutProvider store={STORE} product={PRODUCT} />;
+  return <CheckoutProvider store={{ ...STORE, lnaddress: STORE.lnaddress || "" }} product={PRODUCT} />;
 }

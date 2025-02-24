@@ -1,6 +1,6 @@
-# llamout
+# llamout (La Crypta version)
 
-An open source payment system built with Next and focused on Bitcoin.
+An modified version of [original](https://github.com/unllamas/llamout) llamout.
 
 [![llamout](./public/images/screenshot.png)](https://llamout.vercel.app/)
 
@@ -11,6 +11,7 @@ An open source payment system built with Next and focused on Bitcoin.
 - Database: [Instantdb](https://www.instantdb.com/)
 - Payments: [Lightning Network](https://lightning.network/)
 - UI Library: [Shadcn/ui](https://ui.shadcn.com/)
+- Email service: [Plunk](https://www.useplunk.com/)
 
 ## ✏️ Roadmap
 
@@ -20,8 +21,11 @@ An open source payment system built with Next and focused on Bitcoin.
 - [x] Lightning Payments via [LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)
 - [x] Tiny [/dashboard](https://llamout.vercel.app/dashboard)
 
+### New implementations of La Crypta
+- [x] Email sending system with [Plunk](https://www.useplunk.com/)
+- [x] Check-in with QR scanner
+
 ### Soon
-- [ ] Email sending system with [React Email](https://react.email/) and [Resend](https://resend.com/)
 - [ ] Validation with Zod
 - [ ] Customize Checkout
 - [ ] Onboarding Process
@@ -74,8 +78,11 @@ We'd love to hear from you to improve **Llamout**! Follow these steps to contrib
 
 If you'd like to support the development of **Llamout**, please consider donating to the developer.
 
-- ⚡ Zap sats to [dios@lawallet.ar](dios@lawallet.ar)
+- ⚡ Zap sats to dios@lawallet.ar. (creator)
+- ⚡ Zap sats to fierillo@lawallet.ar. (La Crypta version)
 
 ## 💌 Contact
 
-If you have any questions or concerns about **Llamout**, please contact the developer at [npub1em3g0wcfjz5we0gaaelw07fcyqys3fwg42qykw774mvgala424rsl26ytm](https://njump.me/npub1em3g0wcfjz5we0gaaelw07fcyqys3fwg42qykw774mvgala424rsl26ytm).
+If you have any questions or concerns about **Llamout**, please contact developers at: [npub1em3g0wcfjz5we0gaaelw07fcyqys3fwg42qykw774mvgala424rsl26ytm](https://njump.me/npub1em3g0wcfjz5we0gaaelw07fcyqys3fwg42qykw774mvgala424rsl26ytm).
+
+NIP-05: [fierillo@hodl.ar](https://njump.me/npub18ggwqfvqmxt3m6f4ek2q55nghlj9380me364wd67wz8yzpyh8wusevpdmh)

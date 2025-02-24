@@ -18,14 +18,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 import { Card, CardContent } from '../ui/card';
 import { ProductType, StoreType } from '@/types';
+import { sendEmail } from '@/lib/actions/email';
 
 type InformationProps = {
   store: StoreType;
   disabled: boolean;
   onComplete: (id: any) => void;
+  onEmail: (email: string) => void;
 };
 
-export function Information({ onComplete, disabled, store }: InformationProps) {
+export function Information({ onComplete, onEmail, disabled, store }: InformationProps) {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
@@ -44,6 +46,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
     const id = await addCustomer({ name, email, pubkey, store_id: String(store?.id) });
 
     onComplete(id);
+    onEmail(email);
   }
 
   return (
@@ -54,7 +57,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
         {variant === 'email' ? (
           <>
             <div className='grid gap-2'>
-              <Label htmlFor='name'>Name *</Label>
+              <Label htmlFor='name'>Nombre *</Label>
               <Input
                 id='name'
                 type='text'
@@ -69,7 +72,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
               <Input
                 id='email'
                 type='email'
-                placeholder='satoshi@bitcoin.org'
+                placeholder='para recibir el ticket'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -90,23 +93,23 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
           </div>
         )}
         <Button
-          className='w-full'
+          className='w-full hover:bg-green-400'
           disabled={(variant === 'email' ? !name || !email : !pubkey) || loading || disabled}
           type='submit'
         >
-          Pay {loading && <LoaderCircle className='size-8 animate-spin' />}
+          Pagar {loading && <LoaderCircle className='size-8 animate-spin' />}
         </Button>
       </div>
       {/* </CardContent>
       </Card> */}
       <div className='flex items-center gap-2 px-4'>
         <div className='w-full h-[1px] bg-gray-300'></div>
-        <span className='text-sm text-muted-foreground'>or</span>
+        <span className='text-sm text-muted-foreground'>ó</span>
         <div className='w-full h-[1px] bg-gray-300'></div>
       </div>
       {variant === 'email' ? (
         <Button
-          className='w-full'
+          className='w-full hover:bg-purple-700 hover:text-white'
           variant='outline'
           onClick={() => {
             setName('');
@@ -114,7 +117,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
             setVariant('pubkey');
           }}
         >
-          Continue with Nostr
+          Continua con Nostr
         </Button>
       ) : (
         <Button
@@ -125,7 +128,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
             setVariant('email');
           }}
         >
-          Continue with Email
+          Continua con Email
         </Button>
       )}
     </form>
@@ -180,7 +183,7 @@ export function Payment({ invoice, store }: PaymentProps) {
               )}
             </div>
             <p className='text-center text-muted-foreground'>
-              Remember to pay with a Bitcoin wallet using Lightning Network.
+              ¡Recuerda pagar con una wallet de Bitcoin compatible con Lightning Network!
             </p>
           </div>
         </CardContent>
@@ -200,10 +203,10 @@ export function Summary() {
               <Heart className='size-4 text-green-500' />
             </div>
             <div className='flex flex-col items-center gap-2 text-center'>
-              <h3 className='font-semibold text-xl tracking-tighter text-balance'>Payment successful</h3>
+              <h3 className='font-semibold text-xl tracking-tighter text-balance'>¡Pago exitoso!</h3>
               <p>
-                Thank you for your contribution. <br />
-                We have saved your information and will be receiving updates soon.
+                ¡Gracias por los sats! 🫡<br />
+                Revisa tu mail que ya te debe haber llegado el ticket.
               </p>
             </div>
           </div>
@@ -236,29 +239,44 @@ export function CustomAccordion(props: CustomAccordion) {
   const [orderId, setOrderId] = useState<string>('');
   const [invoice, setInvoice] = useState<string>('');
   const [verify, setVerify] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
 
   const price = product?.price * quantity;
 
   useEffect(() => {
+    const handlePaymentConfirmation = async (isPaid: boolean) => {
+      if (isPaid) {
+        try {
+          await modifyOrder(orderId);
+          
+          if (email) {
+            await sendEmail(email, orderId);
+            console.log('Correo enviado exitosamente a:', email);
+          } else {
+            console.warn('No hay email registrado para enviar confirmación');
+          }
+          
+          handleComplete('payment');
+        } catch (error) {
+          console.error('Error en confirmación de pago:', error);
+        }
+      }
+    };
+  
     if (orderId && verify) {
       listenPayment({
         verifyUrl: verify,
         intervalMs: 5000,
         maxRetries: 48,
-        onPaymentConfirmed: async (isPaid) => {
-          if (isPaid) {
-            modifyOrder(orderId);
-            handleComplete('payment');
-          }
-        },
+        onPaymentConfirmed: handlePaymentConfirmation,
         onPaymentFailed: () => {
-          console.log('Payment verification failed after maximum retries.');
+          console.log('Falló la verificación del pago');
         },
       });
     }
-  }, [orderId, verify]);
+  }, [orderId, verify, email, store?.name]);
 
-  const handleComplete = (step: Step) => {
+  const handleComplete = async (step: Step) => {
     setCompletedSteps([...completedSteps, step]);
     const nextStep = getNextStep(step);
     if (nextStep) {
@@ -291,10 +309,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='information'>
         <AccordionTrigger className='flex justify-between'>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
               {renderIcon('information')}
             </div>
-            <span>Information</span>
+            <span>Información</span>
           </div>
           {/* {isCompleted('information') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
@@ -302,6 +320,7 @@ export function CustomAccordion(props: CustomAccordion) {
           <Information
             store={store}
             disabled={readOnly}
+            onEmail={setEmail}
             onComplete={async (id) => {
               const _id = await addOrder({
                 customer_id: id,
@@ -331,10 +350,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='payment'>
         <AccordionTrigger className='flex justify-between' disabled={!isCompleted('information')}>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
               {renderIcon('payment')}
             </div>
-            <span>Payment</span>
+            <span>Pago</span>
           </div>
           {/* {isCompleted('payment') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
@@ -346,10 +365,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='summary'>
         <AccordionTrigger className='flex justify-between' disabled={!isCompleted('payment')}>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
               {renderIcon('summary')}
             </div>
-            <span>Summary</span>
+            <span>Sumario</span>
           </div>
           {/* {isCompleted('summary') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
