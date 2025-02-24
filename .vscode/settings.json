@@ -1,3 +1,7 @@
 {
-    "CodeGPT.apiKey": "Ollama"
+    "CodeGPT.apiKey": "Ollama",
+    "cSpell.words": [
+        "jsqr",
+        "yudiel"
+    ]
 }
