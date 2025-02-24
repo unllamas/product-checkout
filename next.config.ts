@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     INSTANTDB_KEY: process.env.INSTANTDB_APP_ID,
     NEXT_PLUNK_API_KEY: process.env.PLUNK_API_KEY,
     NEXT_LN_ADDRESS: process.env.LN_ADDRESS,
+    NEXT_CHECKIN_PASSWORD: process.env.CHECKIN_PASSWORD,
   },
   images: {
     remotePatterns: [

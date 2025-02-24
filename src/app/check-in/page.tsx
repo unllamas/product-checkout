@@ -9,12 +9,17 @@ import QRScanner from '@/components/ui/QRscanner';
 const APP_ID = process.env.INSTANTDB_KEY || '';
 const db = init({ appId: APP_ID });
 
+const CORRECT_PASSWORD = process.env.NEXT_CHECKIN_PASSWORD || 'gg';
+
 export default function Page() {
   const query = { order: {}, customer: {} };
   const { isLoading, error, data } = db.useQuery(query);
   const [scanResult, setScanResult] = useState('');
   const [manualId, setManualId] = useState('');
   const [scanError, setScanError] = useState('');
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   const handleCheckIn = async (orderId: string) => {
     setScanError('');
@@ -41,6 +46,37 @@ export default function Page() {
     }
   };
 
+  const handlePasswordSubmit = () => {
+    if (password === CORRECT_PASSWORD) {
+      setIsAuthenticated(true);
+      setAuthError('');
+    } else {
+      setAuthError('Contraseña incorrecta');
+      setPassword('');
+    }
+  };
+
+  // Authentication screen
+  if (!isAuthenticated) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <h2 className="text-2xl font-semibold">Ingresar Contraseña</h2>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Contraseña"
+          className="p-2 border rounded w-64"
+        />
+        {authError && <p className="text-red-600">{authError}</p>}
+        <Button onClick={handlePasswordSubmit} disabled={!password}>
+          Entrar
+        </Button>
+      </div>
+    );
+  }
+
+  // Loading screen
   if (isLoading) return <div className="p-4">Cargando...</div>;
 
   if (error) {
