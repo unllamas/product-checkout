@@ -29,7 +29,7 @@ export async function addOrder(props: AddOrder): Promise<string> {
       quantity: quantity ?? null,
       currency: currency ?? null,
       paid: false,
-
+      checkedIn: false,
       createdAt: Date.now(),
       updatedAt: Date.now(),
     }),
@@ -50,3 +50,15 @@ export async function modifyOrder(id: any): Promise<{ error: string | null }> {
 
   return { error: null };
 }
+
+/*export async function modifyOrder(
+  orderId: string, 
+  updates: { paid?: boolean; checkedIn?: boolean }
+) {
+  await db.transact(
+    db.tx.order[orderId].update({
+      ...updates,
+      updatedAt: Date.now(),
+    })
+  );
+}*/
