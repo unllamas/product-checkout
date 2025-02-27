@@ -111,12 +111,15 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
         <Button
           className='w-full hover:bg-purple-700 hover:text-white'
           variant='outline'
-          disabled={true}
+          title='👷 Devs trabajando en esta funcion.'
           onClick={() => {
-            setName('');
-            setEmail('');
-            setVariant('pubkey');
-          }}
+            // Mostrar mensaje al usuario
+            alert('👷 Devs trabajando en esta funcion.');
+            // Opcional: No ejecutar la lógica original mientras esté deshabilitado
+            // setName('');
+            // setEmail('');
+            // setVariant('pubkey');
+        }}
         >
           Continua con Nostr
         </Button>
