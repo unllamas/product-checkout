@@ -111,6 +111,7 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
         <Button
           className='w-full hover:bg-purple-700 hover:text-white'
           variant='outline'
+          disabled={true}
           onClick={() => {
             setName('');
             setEmail('');
