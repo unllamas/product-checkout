@@ -18,14 +18,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 import { Card, CardContent } from '../ui/card';
 import { ProductType, StoreType } from '@/types';
+import { sendEmail } from '@/lib/actions/email';
 
 type InformationProps = {
   store: StoreType;
   disabled: boolean;
   onComplete: (id: any) => void;
+  onEmail: (email: string) => void;
 };
 
-export function Information({ onComplete, disabled, store }: InformationProps) {
+export function Information({ onComplete, onEmail, disabled, store }: InformationProps) {
   const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
@@ -44,6 +46,7 @@ export function Information({ onComplete, disabled, store }: InformationProps) {
     const id = await addCustomer({ name, email, pubkey, store_id: String(store?.id) });
 
     onComplete(id);
+    onEmail(email);
   }
 
   return (
@@ -236,29 +239,37 @@ export function CustomAccordion(props: CustomAccordion) {
   const [orderId, setOrderId] = useState<string>('');
   const [invoice, setInvoice] = useState<string>('');
   const [verify, setVerify] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
 
   const price = product?.price * quantity;
 
   useEffect(() => {
+    const handlePaymentConfirmation = async (isPaid: boolean) => {
+      if (isPaid) {
+        try {
+          await modifyOrder(orderId);
+          await sendEmail(email, orderId);
+          handleComplete('payment');
+        } catch (error) {
+          console.error('Error: Payment not confirmed', error);
+        }
+      }
+    };
+  
     if (orderId && verify) {
       listenPayment({
         verifyUrl: verify,
         intervalMs: 5000,
         maxRetries: 48,
-        onPaymentConfirmed: async (isPaid) => {
-          if (isPaid) {
-            modifyOrder(orderId);
-            handleComplete('payment');
-          }
-        },
+        onPaymentConfirmed: handlePaymentConfirmation,
         onPaymentFailed: () => {
           console.log('Payment verification failed after maximum retries.');
         },
       });
     }
-  }, [orderId, verify]);
+  }, [orderId, verify, email, store?.name]);
 
-  const handleComplete = (step: Step) => {
+  const handleComplete = async (step: Step) => {
     setCompletedSteps([...completedSteps, step]);
     const nextStep = getNextStep(step);
     if (nextStep) {
@@ -302,6 +313,7 @@ export function CustomAccordion(props: CustomAccordion) {
           <Information
             store={store}
             disabled={readOnly}
+            onEmail={setEmail}
             onComplete={async (id) => {
               const _id = await addOrder({
                 customer_id: id,
