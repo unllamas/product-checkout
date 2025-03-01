@@ -57,7 +57,7 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
         {variant === 'email' ? (
           <>
             <div className='grid gap-2'>
-              <Label htmlFor='name'>Nombre *</Label>
+              <Label htmlFor='name'>Name *</Label>
               <Input
                 id='name'
                 type='text'
@@ -248,17 +248,10 @@ export function CustomAccordion(props: CustomAccordion) {
       if (isPaid) {
         try {
           await modifyOrder(orderId);
-          
-          if (email) {
-            await sendEmail(email, orderId);
-            console.log('Correo enviado exitosamente a:', email);
-          } else {
-            console.warn('No hay email registrado para enviar confirmación');
-          }
-          
+          await sendEmail(email, orderId);
           handleComplete('payment');
         } catch (error) {
-          console.error('Error en confirmación de pago:', error);
+          console.error('Error: Payment not confirmed', error);
         }
       }
     };
