@@ -72,7 +72,7 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
               <Input
                 id='email'
                 type='email'
-                placeholder='para recibir el ticket'
+                placeholder='satoshi@bitcoin.org'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -93,35 +93,31 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
           </div>
         )}
         <Button
-          className='w-full hover:bg-green-400'
+          className='w-full'
           disabled={(variant === 'email' ? !name || !email : !pubkey) || loading || disabled}
           type='submit'
         >
-          Pagar {loading && <LoaderCircle className='size-8 animate-spin' />}
+          Pay {loading && <LoaderCircle className='size-8 animate-spin' />}
         </Button>
       </div>
       {/* </CardContent>
       </Card> */}
       <div className='flex items-center gap-2 px-4'>
         <div className='w-full h-[1px] bg-gray-300'></div>
-        <span className='text-sm text-muted-foreground'>ó</span>
+        <span className='text-sm text-muted-foreground'>or</span>
         <div className='w-full h-[1px] bg-gray-300'></div>
       </div>
       {variant === 'email' ? (
         <Button
-          className='w-full hover:bg-purple-700 hover:text-white'
+          className='w-full'
           variant='outline'
-          title='👷 Devs trabajando en esta funcion.'
           onClick={() => {
-            // Mostrar mensaje al usuario
-            alert('👷 Devs trabajando en esta funcion.');
-            // Opcional: No ejecutar la lógica original mientras esté deshabilitado
-            // setName('');
-            // setEmail('');
-            // setVariant('pubkey');
-        }}
+            setName('');
+            setEmail('');
+            setVariant('pubkey');
+          }}
         >
-          Continua con Nostr
+          Continue with Nostr
         </Button>
       ) : (
         <Button
@@ -132,7 +128,7 @@ export function Information({ onComplete, onEmail, disabled, store }: Informatio
             setVariant('email');
           }}
         >
-          Continua con Email
+          Continue with Email
         </Button>
       )}
     </form>
@@ -187,7 +183,7 @@ export function Payment({ invoice, store }: PaymentProps) {
               )}
             </div>
             <p className='text-center text-muted-foreground'>
-              ¡Recuerda pagar con una wallet de Bitcoin compatible con Lightning Network!
+              Remember to pay with a Bitcoin wallet using Lightning Network.
             </p>
           </div>
         </CardContent>
@@ -207,10 +203,10 @@ export function Summary() {
               <Heart className='size-4 text-green-500' />
             </div>
             <div className='flex flex-col items-center gap-2 text-center'>
-              <h3 className='font-semibold text-xl tracking-tighter text-balance'>¡Pago exitoso!</h3>
+              <h3 className='font-semibold text-xl tracking-tighter text-balance'>Payment successful</h3>
               <p>
-                ¡Gracias por los sats! 🫡<br />
-                Revisa tu mail que ya te debe haber llegado el ticket.
+                Thank you for your contribution. <br />
+                We have saved your information and will be receiving updates soon.
               </p>
             </div>
           </div>
@@ -274,7 +270,7 @@ export function CustomAccordion(props: CustomAccordion) {
         maxRetries: 48,
         onPaymentConfirmed: handlePaymentConfirmation,
         onPaymentFailed: () => {
-          console.log('Falló la verificación del pago');
+          console.log('Payment verification failed after maximum retries.');
         },
       });
     }
@@ -313,10 +309,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='information'>
         <AccordionTrigger className='flex justify-between'>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
               {renderIcon('information')}
             </div>
-            <span>Información</span>
+            <span>Information</span>
           </div>
           {/* {isCompleted('information') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
@@ -354,10 +350,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='payment'>
         <AccordionTrigger className='flex justify-between' disabled={!isCompleted('information')}>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
               {renderIcon('payment')}
             </div>
-            <span>Pago</span>
+            <span>Payment</span>
           </div>
           {/* {isCompleted('payment') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
@@ -369,10 +365,10 @@ export function CustomAccordion(props: CustomAccordion) {
       <AccordionItem value='summary'>
         <AccordionTrigger className='flex justify-between' disabled={!isCompleted('payment')}>
           <div className='flex items-center gap-2'>
-            <div className='flex justify-center items-center w-8 h-8 rounded bg-white border'>
+            <div className='flex justify-center items-center w-8 h-8 rounded-full bg-white border'>
               {renderIcon('summary')}
             </div>
-            <span>Sumario</span>
+            <span>Summary</span>
           </div>
           {/* {isCompleted('summary') && <span className='text-sm text-green-500'>Completed</span>} */}
         </AccordionTrigger>
